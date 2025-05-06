@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+<robot name="ensamble1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(pkg-share ensamble1_description)/urdf/materials.xacro" />
+<xacro:include filename="$(pkg-share ensamble1_description)/urdf/ensamble1.trans" />
+<xacro:include filename="$(pkg-share ensamble1_description)/urdf/ensamble1.gazebo" />
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.06045806556360531 0.026131827222361785 0.12202544623503762" rpy="0 0 0"/>
+    <mass value="0.8253006677246847"/>
+    <inertia ixx="0.011002" iyy="0.001719" izz="0.009755" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="hip_link_1">
+  <inertial>
+    <origin xyz="0.014391303071621682 0.012990237256433279 -0.02940816491248089" rpy="0 0 0"/>
+    <mass value="0.056769163697198234"/>
+    <inertia ixx="7.9e-05" iyy="8e-05" izz="2.5e-05" ixy="3e-06" iyz="-1.3e-05" ixz="5e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.047413 0.153368 -0.069025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/hip_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.047413 0.153368 -0.069025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/hip_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="leg_link_1">
+  <inertial>
+    <origin xyz="-0.047154307126473206 0.00565026883943201 0.03206176120832004" rpy="0 0 0"/>
+    <mass value="0.0689380726825846"/>
+    <inertia ixx="3.7e-05" iyy="0.000184" izz="0.000154" ixy="-5e-06" iyz="-0.0" ixz="-3.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.044413 0.135968 0.032625" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/leg_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.044413 0.135968 0.032625" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/leg_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="ankle_link_1">
+  <inertial>
+    <origin xyz="0.0524724401506928 0.0021026057122742747 0.012476238944349006" rpy="0 0 0"/>
+    <mass value="0.052363038339162324"/>
+    <inertia ixx="3e-06" iyy="0.0001" izz="0.0001" ixy="-2e-06" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.194413 0.135968 0.026919" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/ankle_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.194413 0.135968 0.026919" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://ensamble1_description/meshes/ankle_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Revolucion3" type="continuous">
+  <origin xyz="-0.047413 -0.153368 0.069025" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="hip_link_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+
+<joint name="Revolucion4" type="continuous">
+  <origin xyz="0.003 0.0174 -0.10165" rpy="0 0 0"/>
+  <parent link="hip_link_1"/>
+  <child link="leg_link_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+</joint>
+
+<joint name="Revolucion5" type="continuous">
+  <origin xyz="-0.15 0.0 0.005706" rpy="0 0 0"/>
+  <parent link="leg_link_1"/>
+  <child link="ankle_link_1"/>
+  <axis xyz="-0.0 -0.0 -1.0"/>
+</joint>
+
+</robot>

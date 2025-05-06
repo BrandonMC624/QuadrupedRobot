@@ -1,0 +1,9 @@
+<launch>
+
+<rosparam file="$(find ensamble1_description)/launch/controller.yaml" command="load"/>
+<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="ensamble1" args="Revolución 3_position_controller Revolución 4_position_controller Revolución 5_position_controller joint_state_controller "/>
+<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
+  <remap from="/joint_states" to="/ensamble1/joint_states"/>
+</node>
+
+</launch>
